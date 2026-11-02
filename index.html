@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jezelle Gabion — Computer Science portfolio.">
+  <title>Jezelle Gabion — Computer Science</title>
+  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #20241f;
+      --muted: #697067;
+      --paper: #f6f5ef;
+      --accent: #c9f06b;
+      --line: rgba(32, 36, 31, .14);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", sans-serif;
+      letter-spacing: -.02em;
+    }
+    a { color: inherit; }
+    .navbar { background: rgba(246, 245, 239, .94); }
+    .navbar-brand { font-weight: 800; letter-spacing: -.06em; }
+    .nav-link {
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 600;
+      margin-left: 1rem;
+    }
+    .nav-link:hover, .nav-link:focus { color: var(--ink); }
+    .hero { min-height: 660px; padding-top: 8rem; padding-bottom: 6rem; }
+    .eyebrow {
+      color: var(--muted);
+      font-size: .77rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(3.7rem, 9vw, 8rem);
+      font-weight: 800;
+      letter-spacing: -.09em;
+      line-height: .88;
+      max-width: 850px;
+    }
+    .hero h1 span { color: #7c9660; }
+    .hero-copy { color: var(--muted); font-size: 1.15rem; max-width: 460px; }
+    .button-dark {
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      color: white;
+      font-weight: 650;
+      padding: .85rem 1.35rem;
+      text-decoration: none;
+      transition: background .2s, color .2s, transform .2s;
+    }
+    .button-dark:hover { background: transparent; color: var(--ink); transform: translateY(-2px); }
+    .profile-card {
+      background: rgba(255, 255, 255, .38);
+      border: 1px solid rgba(32, 36, 31, .08);
+      border-radius: 32px;
+      box-shadow: 0 20px 36px rgba(32, 36, 31, .04);
+      margin: 0 auto;
+      max-width: 420px;
+      padding: 1.2rem 1.2rem .9rem;
+      width: 100%;
+    }
+    .profile-frame {
+      aspect-ratio: 1;
+      background: #e7e7e1;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 1.3rem;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .hero-photo {
+      display: block;
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+      object-position: center 32%;
+      position: absolute;
+      width: 100%;
+    }
+    .profile-name {
+      color: var(--ink);
+      font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+      font-weight: 500;
+      letter-spacing: .08em;
+      margin: 0;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .section { padding: 7rem 0; }
+    .section-heading {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 750;
+      letter-spacing: -.075em;
+      line-height: 1;
+    }
+    .work-section { background: #eeede6; }
+    .project-card {
+      background: transparent;
+      border: 0;
+      height: 100%;
+    }
+    .project-art {
+      align-items: center;
+      border-radius: 8px;
+      display: flex;
+      height: 310px;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .project-art::before, .project-art::after {
+      border: 1px solid rgba(32, 36, 31, .32);
+      border-radius: 50%;
+      content: "";
+      height: 220px;
+      position: absolute;
+      transform: rotate(-24deg);
+      width: 280px;
+    }
+    .project-art::after { height: 300px; transform: rotate(28deg); width: 170px; }
+    .project-art strong {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -.09em;
+      position: relative;
+      z-index: 1;
+    }
+    .piko-icon {
+      border-radius: 28px;
+      height: 160px;
+      object-fit: cover;
+      position: relative;
+      width: 160px;
+      z-index: 1;
+    }
+    .piko-art { background: transparent; }
+    .piko-art::before, .piko-art::after { content: none; }
+    .piko-art .piko-icon { height: 220px; width: 220px; }
+    .art-lime { background: #c9f06b; }
+    .art-lilac { background: #c9b9f3; }
+    .art-peach { background: #f3b99b; }
+    .project-meta { color: var(--muted); font-size: .88rem; }
+    .project-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -.04em; }
+    .about-section { background: var(--ink); color: var(--paper); }
+    .about-section .eyebrow, .about-section .about-copy { color: #b8bcb3; }
+    .about-copy { font-size: 1.15rem; line-height: 1.75; max-width: 650px; }
+    .skill {
+      border-bottom: 1px solid rgba(246, 245, 239, .2);
+      color: #d4d7d0;
+      padding: .9rem 0;
+    }
+    .contact-section { padding: 8rem 0; }
+    .contact-link {
+      border-bottom: 1px solid var(--ink);
+      display: inline-block;
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      padding-bottom: .2rem;
+      text-decoration: none;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+    @media (max-width: 767.98px) {
+      .hero { min-height: auto; padding-top: 7rem; }
+      .hero-photo { height: 260px; max-width: 260px; }
+      .section { padding: 5rem 0; }
+      .project-art { height: 250px; }
+      .nav-link { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md fixed-top">
+    <div class="container py-2">
+      <a class="navbar-brand" href="#home">JEZELLE GABION<span class="text-success">.</span></a>
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-md-center">
+          <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-8">
+          <p class="eyebrow mb-4">Computer Science Student</p>
+          
+          <p class="hero-copy mt-4 mb-4">Hi, I’m Jezelle, a 4th year BS Computer Science student at Sorsogon State University-Bulan Campus. I’m an aspiring UI/UX designer with a passion for building practical and user-friendly software..</p>
+          <a class="button-dark d-inline-flex align-items-center gap-2" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="col-lg-4 d-flex align-items-center justify-content-center">
+          <div class="profile-card">
+            <div class="profile-frame">
+              <img class="hero-photo" src="./img/profile.jpg" alt="Jezelle's profile photo">
+            </div>
+            <p class="profile-name">Jezelle G. Gabion</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work-section" id="work">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-5">
+          <div>
+            <p class="eyebrow mb-3">A few things I’ve made</p>
+            <h2 class="section-heading mb-0">Selected work</h2>
+          </div>
+          <p class="project-meta mb-1">2023 — 2025</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <article class="project-card">
+              <div class="project-art piko-art"><img class="piko-icon" src="./img/icon.png" alt="Piko App icon"></div>
+              <div class="mt-3">
+                <h3 class="project-title mb-1">Piko App</h3>
+                <p class="project-meta mb-2">Mobile app · Expo · React Native · Firebase</p>
+                <p class="project-meta mb-3">A simple task manager with offline-friendly local storage, authenticated cloud sync, task reminders, and a tab-based experience.</p>
+                <a class="button-dark d-inline-flex align-items-center gap-2" href="https://github.com/rnzel/Piko" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="project-card">
+              <div class="project-art art-lilac" role="img" aria-label="Grade Monitoring System project visual"><strong>GMS</strong></div>
+              <div class="mt-3">
+                <h3 class="project-title mb-1">Grade Monitoring System (GMS)</h3>
+                <p class="project-meta mb-2">Web-based academic management system</p>
+                <p class="project-meta mb-3">The <strong>Grade Monitoring System (GMS)</strong> is a web-based system designed to help professors manage and students monitor their academic performance.</p>
+                <a class="button-dark d-inline-flex align-items-center gap-2" href="https://gms-frontend-36alugrgn-gillegoalthea0-cryptos-projects.vercel.app/login.html" target="_blank" rel="noopener noreferrer">View project <span aria-hidden="true">↗</span></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="achievements">
+      <div class="container">
+        <div class="mb-5">
+          <p class="eyebrow mb-3">Learning & growth</p>
+          <h2 class="section-heading mb-0">Achievements</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <article class="h-100 d-flex flex-column align-items-start justify-content-center rounded-2 p-4" style="background: #eeede6;">
+              <p class="eyebrow mb-3">Certificate</p>
+              <h3 class="project-title mb-2">HTML</h3>
+              <p class="project-meta mb-4">View the certificate PDF.</p>
+              <a class="button-dark d-inline-flex align-items-center gap-2" href="./img/HTML.pdf" target="_blank" rel="noopener noreferrer">View certificate <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="h-100 d-flex flex-column align-items-start justify-content-center rounded-2 p-4" style="background: #eeede6;">
+              <p class="eyebrow mb-3">Certificate</p>
+              <h3 class="project-title mb-2">CSS</h3>
+              <p class="project-meta mb-4">View the certificate PDF.</p>
+              <a class="button-dark d-inline-flex align-items-center gap-2" href="./img/CSS.pdf" target="_blank" rel="noopener noreferrer">View certificate <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="h-100 d-flex flex-column align-items-start justify-content-center rounded-2 p-4" style="background: #eeede6;">
+              <p class="eyebrow mb-3">Certificate</p>
+              <h3 class="project-title mb-2">AI Essentials: Theory and Practice</h3>
+              <p class="project-meta mb-4">View the certificate PDF.</p>
+              <a class="button-dark d-inline-flex align-items-center gap-2" href="./img/Certificate_for_AI_Essentials_Theory_and_Practice.pdf" target="_blank" rel="noopener noreferrer">View certificate <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="h-100 d-flex flex-column align-items-start justify-content-center rounded-2 p-4" style="background: #eeede6;">
+              <p class="eyebrow mb-3">Certificate</p>
+              <h3 class="project-title mb-2">JavaScript</h3>
+              <p class="project-meta mb-4">View the certificate PDF.</p>
+              <a class="button-dark d-inline-flex align-items-center gap-2" href="./img/javascript.pdf" target="_blank" rel="noopener noreferrer">View certificate <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <p class="eyebrow mb-3">A little about me</p>
+            <h2 class="section-heading">Curious by nature.<br>Intentional by design.</h2>
+          </div>
+          <div class="col-lg-7">
+            <p class="about-copy mb-4">I am a motivated and responsible Computer Science student with a willingness to learn new skills and gain practical experience. I am adaptable, detail-oriented, and committed to completing tasks efficiently
+.</p>
+            <a class="button-dark d-inline-flex align-items-center gap-2 mb-5" href="./Resume/My Resume.pdf" target="_blank" rel="noopener noreferrer">View my resume <span aria-hidden="true">↗</span></a>
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="eyebrow mb-2">What I do</p>
+                <p class="skill mb-0">Studying</p>
+                <p class="skill mb-0">4th Year Computer Science Student</p>
+              
+              </div>
+              <div class="col-sm-6 mt-4 mt-sm-0">
+                <p class="eyebrow mb-2">Currently</p>
+                <p class="skill mb-0">Based in Bulan Sorsogon</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section container" id="contact">
+      <div class="row align-items-end g-4">
+        <div class="col-lg-8">
+          <p class="eyebrow mb-3">Have a good one in mind?</p>
+          <h2 class="section-heading mb-4">Let’s make it happen.</h2>
+          <a class="contact-link" href="mailto:jezelle.gabion@gmail.com">jezelle.gabion@gmail.com <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="col-lg-4 text-lg-end project-meta">Open to collaborations and kind hellos.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-4">
+    <div class="container d-flex flex-wrap justify-content-between gap-2">
+      <span>© 2026 Jezelle Gabion</span>
+      <span>Designed with intention. Built with Bootstrap.</span>
+    </div>
+  </footer>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
