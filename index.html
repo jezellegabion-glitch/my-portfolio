@@ -48,7 +48,17 @@
       max-width: 850px;
     }
     .hero h1 span { color: #7c9660; }
-    .hero-copy { color: var(--muted); font-size: 1.15rem; max-width: 460px; }
+    .hero-copy { color: var(--muted); font-size: 1rem; max-width: 460px; }
+    .hero-introduction {
+      color: var(--ink);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 650px;
+    }
+    @media (max-width: 575.98px) {
+      .hero-introduction { font-size: 32px; }
+    }
     .button-dark {
       background: var(--ink);
       border: 1px solid var(--ink);
@@ -71,9 +81,9 @@
       width: 100%;
     }
     .profile-frame {
-      aspect-ratio: 1;
+      aspect-ratio: 4 / 5;
       background: #e7e7e1;
-      border-radius: 50%;
+      border-radius: 50% 50% 18px 18px / 32% 32% 18px 18px;
       display: block;
       margin: 0 auto 1.3rem;
       overflow: hidden;
@@ -172,7 +182,7 @@
     footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
     @media (max-width: 767.98px) {
       .hero { min-height: auto; padding-top: 7rem; }
-      .hero-photo { height: 260px; max-width: 260px; }
+      .profile-frame { max-width: 260px; }
       .section { padding: 5rem 0; }
       .project-art { height: 250px; }
       .nav-link { margin-left: 0; }
@@ -203,7 +213,8 @@
         <div class="col-lg-8">
           <p class="eyebrow mb-4">Computer Science Student</p>
           
-          <p class="hero-copy mt-4 mb-4">Hi, I’m Jezelle, a 4th year BS Computer Science student at Sorsogon State University-Bulan Campus. I’m an aspiring UI/UX designer with a passion for building practical and user-friendly software..</p>
+          <p class="hero-introduction mt-4 mb-3">Hi, I’m Jezelle,  4th year BS Computer Science Student</p>
+          <p class="hero-copy mb-4">I am a student at Sorsogon State University – Bulan Campus. I aspire to create practical, user-friendly, and software that meets people's needs..</p>
           <a class="button-dark d-inline-flex align-items-center gap-2" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
         </div>
         <div class="col-lg-4 d-flex align-items-center justify-content-center">
